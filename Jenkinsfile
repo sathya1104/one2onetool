@@ -20,10 +20,10 @@ pipeline {
             sh 'docker build -t one2onetool:latest .' 
             //sh 'docker tag one2onetool sathya1104/one2onetool:latest'
             sh 'docker tag one2onetool sathya1104/one2onetool:$BUILD_NUMBER'
-            sh 'docker images'
+            sh 'docker images | grep one2onetool'
        }
     }
-	
+	/*
 	stage('Publish image to Docker Hub') {
          steps {
             withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
@@ -32,7 +32,7 @@ pipeline {
 		    }     
          }
     }
-	
+	*/
     stage('Run Docker container on Jenkins Agent') {  
         steps {
            sh "docker run -d -p 3000:3000 sathya1104/one2onetool:$BUILD_NUMBER"
