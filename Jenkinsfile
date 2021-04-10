@@ -1,3 +1,4 @@
+def DOCKER_REGISTRY_URI="https://registry.hub.docker.com"
 properties([pipelineTriggers([githubPush()])])
 
 pipeline {
@@ -13,17 +14,30 @@ pipeline {
       }
     }
      
-    stage('Build') {
-      steps {
-        sh 'rm -rf node_modules package-lock.json && npm install'
-      }
-    }  
-    
-            
-    stage('Test') {
-      steps {
-        sh 'npm test'
-      }
+	stage('Docker Build and Tag') {
+       steps {
+          
+            sh 'docker build -t one2onetool:latest .' 
+            //sh 'docker tag one2onetool sathya1104/one2onetool:latest'
+            sh 'docker tag one2onetool sathya1104/one2onetool:$BUILD_NUMBER'
+            sh 'docker images'
+       }
     }
+	
+	stage('Publish image to Docker Hub') {
+         steps {
+            withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
+		 	  sh "docker login --password=${PASSWORD} --username=${USERNAME} ${DOCKER_REGISTRY_URI}"
+			  sh "docker push sathya1104/one2onetool:$BUILD_NUMBER"
+		    }     
+         }
+    }
+	
+    stage('Run Docker container on Jenkins Agent') {  
+        steps {
+           sh "docker run -d -p 3000:3000 sathya1104/one2onetool:$BUILD_NUMBER"
+        }
+    }	
+	
   }
 }
