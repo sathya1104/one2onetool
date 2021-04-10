@@ -40,4 +40,11 @@ pipeline {
     }	
 	
   }
+  
+  post {
+        failure {
+            mail to:"sathya1104@gmail.com", subject:"FAILURE: ${currentBuild.fullDisplayName}", body: "Boo, we failed."
+        }
+    }
+  
 }
