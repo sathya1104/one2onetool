@@ -22,9 +22,6 @@ pipeline {
             
     stage('Test') {
       steps {
-	    sh 'npm uninstall puppeteer mocha chai'
-		sh 'npm install puppeteer mocha chai'
-		sh 'npm run start'
         sh 'npm test'
       }
     }
