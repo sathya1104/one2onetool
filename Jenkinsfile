@@ -18,7 +18,7 @@ pipeline {
        steps {
           
             sh 'docker build -t one2onetool:latest .' 
-            //sh 'docker tag one2onetool sathya1104/one2onetool:latest'
+            sh 'docker tag one2onetool sathya1104/one2onetool:latest'
             //sh 'docker tag one2onetool sathya1104/one2onetool:$BUILD_NUMBER'
             sh 'docker images | grep one2onetool'
        }
