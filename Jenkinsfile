@@ -35,7 +35,8 @@ pipeline {
 	*/
     stage('Run Docker container on Jenkins Agent') {  
         steps {
-           sh "docker run -d -p 3000:3000 sathya1104/one2onetool:$BUILD_NUMBER"
+		   sh "docker kill 1to1tool"
+           sh "docker run --name 1to1tool -d -p 3000:3000 sathya1104/one2onetool:$BUILD_NUMBER"
         }
     }	
 	
