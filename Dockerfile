@@ -10,4 +10,4 @@ RUN pwd && \
     npm install && \
 	npm test
 EXPOSE 3000
-CMD node server.js
+CMD node index.js
