@@ -1,3 +1,5 @@
+properties([pipelineTriggers([githubPush()])])
+
 pipeline {
   agent any
     
@@ -13,7 +15,7 @@ pipeline {
      
     stage('Build') {
       steps {
-        sh 'rm -rf node_modules package-lock.json && npm install && npm start'
+        sh 'rm -rf node_modules package-lock.json && npm install'
       }
     }  
     
