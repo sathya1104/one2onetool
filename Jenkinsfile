@@ -9,7 +9,7 @@ pipeline {
         
     stage('Git') {
       steps {
-        git 'https://github.com/sathya1104/one2onetool.git'
+        checkout scm
       }
     }
      
