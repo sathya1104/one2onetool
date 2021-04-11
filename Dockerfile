@@ -7,7 +7,8 @@ RUN pwd && \
     ls && \
 	npm init -y && \
 	npm install dotenv && \
+	npm install fs-extra && \
     npm install && \
 	npm test
 EXPOSE 3000
-CMD node index.js
+CMD node server.js

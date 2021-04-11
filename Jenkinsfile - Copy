@@ -15,7 +15,7 @@ pipeline {
      
     stage('Build') {
       steps {
-        sh 'rm -rf node_modules package-lock.json && npm install'
+        sh 'rm -rf node_modules package-lock.json && npm install fs-extra && npm install'
       }
     }  
     
