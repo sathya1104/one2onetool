@@ -12,3 +12,10 @@ b. “release”   branch   should   use   “Questions.json”   as   its   inp
 Suggestion: We can differentiate builds by having version number appended with branch name (i.e., staging/release) for which we can make use of standard-version npm package, which can perform next development version will be automatically applied into package.json and committed to respective branch
 5. If   any   of   the   tasks   fails   at   any   point,   the   pipeline   should   be   stopped   and   an   email   alert should   be   sent   with   relevant   information
 Solution: As part of Jenkinsfile, we can have post only with failure, which will trigger mail only when it fails with relevant log links
+
+![image](https://user-images.githubusercontent.com/12995618/114420500-f5968d80-9be6-11eb-93d5-f0f0a4cd326a.png)
+
+Below is the output where we can see output on port 3000 running inside container which is mapped to same port at host level.
+
+![image](https://user-images.githubusercontent.com/12995618/114420545-021ae600-9be7-11eb-89cb-3bb926f584c1.png)
+
